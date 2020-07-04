@@ -138,7 +138,7 @@ let adminController = {
     if (req.body.isAdmin === "set as user") {
       User.findAll({
         where: {
-          isAdmin: 1,
+          isAdmin: Boolean(1),
         }, raw: true
       }).then(users => {
         if (users.length > 1) {
