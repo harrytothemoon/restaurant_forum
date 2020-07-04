@@ -1,11 +1,11 @@
 ## Getting Started
 
-用MySQL資料庫重新打造餐廳forum。
+用MySQL資料庫重新打造Restaurant forum。
 
 ## Getting Started
 Step.1 Clone and install node package
 ```
-$ git clone https://github.com/harry811016/todo-list-sequelize.git
+$ git clone https://github.com/harry811016/restaurant_forum.git
 $ npm install
 ```
 Step.2 Execute server 
