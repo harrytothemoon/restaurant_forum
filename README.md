@@ -12,11 +12,15 @@ Step.2 Execute server
 ```
 $ npm run dev 
 ```
-Step.3 Run seed migration to build fake data
+Step.3 Run migration to build data model
+```
+$ npx sequelize db:migrate:all
+```
+Step.4 Run seed migration to build fake data
 ```
 $ npx sequelize db:seed:all
 ```
-Step.4 Enter following website on browser
+Step.5 Enter following website on browser
 ```
 http://localhost:3000
 ```
