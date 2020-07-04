@@ -133,7 +133,7 @@ let adminController = {
             isAdmin: 1,
           })
             .then(res.redirect('/admin/users'))
-        })
+        }).catch(error => console.log(error))
     }
     if (req.body.isAdmin === "set as user") {
       User.findAll({
@@ -156,7 +156,7 @@ let adminController = {
           req.flash('error_messages', "There must be at least one admin!")
           return res.redirect('/admin/users')
         }
-      })
+      }).catch(error => console.log(error))
     }
   }
 }
