@@ -130,7 +130,7 @@ let adminController = {
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
-            isAdmin: 1,
+            isAdmin: Boolean(1),
           })
             .then(res.redirect('/admin/users'))
         }).catch(error => console.log(error))
@@ -148,7 +148,7 @@ let adminController = {
                 name: req.body.name,
                 email: req.body.email,
                 password: req.body.password,
-                isAdmin: 0,
+                isAdmin: Boolean(0),
               })
                 .then(res.redirect('/admin/users'))
             })
