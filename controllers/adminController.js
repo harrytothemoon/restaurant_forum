@@ -122,7 +122,7 @@ let adminController = {
       return res.render('admin/users', { users: users })
     })
   },
-  putUser: (req, res) => {
+  putUsers: (req, res) => {
     if (req.body.isAdmin === "set as admin") {
       return User.findByPk(req.params.id)
         .then((user) => {
@@ -136,16 +136,27 @@ let adminController = {
         })
     }
     if (req.body.isAdmin === "set as user") {
-      return User.findByPk(req.params.id)
-        .then((user) => {
-          user.update({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-            isAdmin: 0,
-          })
-            .then(res.redirect('/admin/users'))
-        })
+      User.findAll({
+        where: {
+          isAdmin: 1,
+        }, raw: true
+      }).then(users => {
+        if (users.length > 1) {
+          return User.findByPk(req.params.id)
+            .then((user) => {
+              user.update({
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                isAdmin: 0,
+              })
+                .then(res.redirect('/admin/users'))
+            })
+        } else {
+          req.flash('error_messages', "There must be at least one admin!")
+          return res.redirect('/admin/users')
+        }
+      })
     }
   }
 }
