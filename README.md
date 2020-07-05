@@ -14,7 +14,7 @@ $ npm run dev
 ```
 Step.3 Run migration to build data model
 ```
-$ npx sequelize db:migrate:all
+$ npx sequelize db:migrate
 ```
 Step.4 Run seed migration to build fake data
 ```
