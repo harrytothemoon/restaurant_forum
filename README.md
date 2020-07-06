@@ -8,17 +8,17 @@ Step.1 Clone and install node package
 $ git clone https://github.com/harry811016/restaurant_forum.git
 $ npm install
 ```
-Step.2 Execute server 
-```
-$ npm run dev 
-```
-Step.3 Run migration to build data model
+Step.2 Run migration to build data model
 ```
 $ npx sequelize db:migrate
 ```
-Step.4 Run seed migration to build fake data
+Step.3 Run seed migration to build fake data
 ```
 $ npx sequelize db:seed:all
+```
+Step.4 Execute server 
+```
+$ npm run dev 
 ```
 Step.5 Enter following website on browser
 ```
