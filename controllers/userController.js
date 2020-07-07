@@ -46,6 +46,13 @@ const userController = {
   getUser: (req, res) => {
     return res.render('user')
   },
+  editUser: (req, res) => {
+    return User.findByPk(req.params.id).then(user => {
+      return res.render('editUser', {
+        user: user.toJSON()
+      })
+    })
+  },
 }
 
 module.exports = userController
