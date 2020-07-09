@@ -49,9 +49,16 @@ let restController = {
     return Restaurant.findByPk(req.params.id, {
       include: [Category, { model: Comment, include: [User] }]
     }).then(restaurant => {
-      return res.render('restaurant', {
-        restaurant: restaurant.toJSON()
+      let click = restaurant.dataValues.clicks
+      click++
+      restaurant.update({
+        clicks: click
       })
+        .then(() => {
+          return res.render('restaurant', {
+            restaurant: restaurant.toJSON()
+          })
+        })
     })
   },
   getFeeds: (req, res) => {
@@ -86,6 +93,7 @@ let restController = {
         restaurant: restaurant.toJSON(),
         totalComments: totalComments
       })
+
     })
   },
 }
