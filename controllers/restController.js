@@ -110,7 +110,6 @@ let restController = {
   getTops: (req, res) => {
     return Restaurant.findAll({
       limit: 10,
-      order: [['createdAt', 'DESC']],
       include: { model: User, as: 'FavoritedUsers' }
     }).then(restaurants => {
       let data = restaurants.map(r => ({
