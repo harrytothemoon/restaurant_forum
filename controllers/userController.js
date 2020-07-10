@@ -52,20 +52,15 @@ const userController = {
   },
 
   getUser: (req, res) => {
-    if (Number(req.params.id) === req.user.id) {
-      return User.findByPk(req.params.id, {
-        include: { model: Comment, include: [Restaurant] }
-      }).then(user => {
-        let totalComments = user.dataValues.Comments.length
-        return res.render('user', {
-          user: user.toJSON(),
-          totalComments: totalComments
-        })
+    return User.findByPk(req.params.id, {
+      include: { model: Comment, include: [Restaurant] }
+    }).then(user => {
+      let totalComments = user.dataValues.Comments.length
+      return res.render('user', {
+        getUser: user.toJSON(),
+        totalComments: totalComments
       })
-    } else {
-      req.flash('error_messages', '沒有權限進入他人的個人資訊頁面！')
-      return res.redirect(`/users/${req.user.id}`)
-    }
+    })
   },
   editUser: (req, res) => {
     if (Number(req.params.id) === req.user.id) {
@@ -76,7 +71,7 @@ const userController = {
       })
     } else {
       req.flash('error_messages', '沒有權限進入他人修改個人資訊頁面！')
-      return res.redirect(`/users/${req.user.id}`)
+      return res.redirect(`/users/${req.params.id}`)
     }
   },
   putUser: (req, res) => {

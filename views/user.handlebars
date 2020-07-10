@@ -1,12 +1,12 @@
 <div class="card">
   <div class="row">
     <div class="col-md-4">
-      <img class="img-responsive center-block" src="{{user.image}}" style="width: 300px;height: 300px;">
+      <img class="img-responsive center-block" src="{{getUser.image}}" style="width: 300px;height: 300px;">
     </div>
     <div class="col-md-8">
-      <h1>{{user.name}}</h1>
-      <p>Email: {{user.email}}</p>
-      <a href="/users/{{user.id}}/edit"><button class="btn btn-primary">Edit</button></a>
+      <h1>{{getUser.name}}</h1>
+      <p>Email: {{getUser.email}}</p>
+      <a href="/users/{{getUser.id}}/edit"><button class="btn btn-primary">Edit</button></a>
     </div>
     <hr>
   </div>
@@ -16,7 +16,7 @@
     <strong>{{totalComments}}</strong> 已評論餐廳
   </div>
   <div class="card-body">
-    {{#each user.Comments}}
+    {{#each getUser.Comments}}
     <a href="/restaurants/{{this.Restaurant.id}}"><img src="{{this.Restaurant.image}}" alt=""
         style="width:75px;height:75px"></a>
     {{/each}}
