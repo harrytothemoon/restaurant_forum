@@ -53,12 +53,19 @@ const userController = {
 
   getUser: (req, res) => {
     return User.findByPk(req.params.id, {
-      include: { model: Comment, include: [Restaurant] }
+      include: [
+        { model: Comment, include: [Restaurant] },
+        { model: Restaurant, as: 'FavoritedRestaurants' },
+        { model: User, as: 'Followers' },
+        { model: User, as: 'Followings' }
+      ]
     }).then(user => {
-      let totalComments = user.dataValues.Comments.length
+      let results = new Set()
+      let data = user.toJSON().Comments.map(c => c)
+      let comments = data.filter(item => !results.has(item.RestaurantId) ? results.add(item.RestaurantId) : false)
       return res.render('user', {
         getUser: user.toJSON(),
-        totalComments: totalComments
+        comments: comments
       })
     })
   },
@@ -77,7 +84,6 @@ const userController = {
   putUser: (req, res) => {
     if (Number(req.params.id) === req.user.id) {
       if (!req.body.name) {
-        console.log(req.body)
         req.flash('error_messages', "name didn't exist")
         return res.redirect('back')
       }
@@ -195,7 +201,6 @@ const userController = {
         return res.redirect('back')
       })
   },
-
   removeFollowing: (req, res) => {
     return Followship.findOne({
       where: {
