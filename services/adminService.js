@@ -25,24 +25,15 @@ let adminController = {
       callback({ restaurant: restaurant })
     })
   },
-  getCategories: (req, res, callback) => {
-    return Category.findAll({
-      raw: true,
-      nest: true
-    }).then(categories => {
-      if (req.params.id) {
-        Category.findByPk(req.params.id)
-          .then((category) => {
-            return callback({
-              categories: categories,
-              category: category.toJSON()
-            })
+  deleteRestaurant: (req, res, callback) => {
+    return Restaurant.findByPk(req.params.id)
+      .then((restaurant) => {
+        restaurant.destroy()
+          .then((restaurant) => {
+            callback({ status: 'success', message: '' })
           })
-      } else {
-        return callback({ categories: categories })
-      }
-    })
-  },
+      })
+  }
 }
 
 module.exports = adminController
