@@ -31,6 +31,7 @@ router.get('/admin/users', authenticated, authenticatedAdmin, adminController.ge
 router.put('/admin/users/:id', authenticated, authenticatedAdmin, adminController.putUsers)
 
 router.get('/admin/categories', authenticated, authenticatedAdmin, categoryController.getCategories)
+router.get('/admin/categories/:id', authenticated, authenticatedAdmin, categoryController.getCategories)
 router.post('/admin/categories', authenticated, authenticatedAdmin, categoryController.postCategory)
 router.put('/admin/categories/:id', authenticated, authenticatedAdmin, categoryController.putCategory)
 router.delete('/admin/categories/:id', authenticated, authenticatedAdmin, categoryController.deleteCategory)
