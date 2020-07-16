@@ -4,11 +4,6 @@ const imgur = require('imgur-node-api')
 const commentController = require('./commentController')
 const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID
 const User = db.User
-const Comment = db.Comment
-const Restaurant = db.Restaurant
-const Favorite = db.Favorite
-const Like = db.Like
-const Followship = db.Followship
 
 const userService = require('../services/userService.js')
 
