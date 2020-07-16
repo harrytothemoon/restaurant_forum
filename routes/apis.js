@@ -61,6 +61,6 @@ router.get('/restaurants/:id', authenticated, restController.getRestaurant)
 router.get('/restaurants/:id/dashboard', authenticated, restController.getDashboard)
 
 router.post('/comments', authenticated, commentController.postComment)
-router.delete('/comments/:id', authenticatedAdmin, commentController.deleteComment)
+router.delete('/comments/:id', authenticated, authenticatedAdmin, commentController.deleteComment)
 
 module.exports = router

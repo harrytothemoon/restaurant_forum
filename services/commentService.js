@@ -17,7 +17,7 @@ let commentController = {
       .then((comment) => {
         comment.destroy()
           .then((comment) => {
-            return callback({ status: 'success', message: '', comment })
+            return callback({ status: 'success', message: '' })
           })
       })
   }
