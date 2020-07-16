@@ -1,36 +1,30 @@
-const db = require('../models')
-const Restaurant = db.Restaurant
-const Category = db.Category
-const Comment = db.Comment
-const User = db.User
-const pageLimit = 10
+const db = require('../../models')
+const restService = require('../../services/restService.js')
 
-const restService = require('../services/restService.js')
-
-let restController = {
+const restController = {
   getRestaurants: (req, res) => {
     restService.getRestaurants(req, res, (data) => {
-      return res.render('restaurants', data)
+      return res.json(data)
     })
   },
   getRestaurant: (req, res) => {
     restService.getRestaurant(req, res, (data) => {
-      return res.render('restaurant', data)
+      return res.json(data)
     })
   },
   getFeeds: (req, res) => {
     restService.getFeeds(req, res, (data) => {
-      return res.render('feeds', data)
+      return res.json(data)
     })
   },
   getDashboard: (req, res) => {
     restService.getDashboard(req, res, (data) => {
-      return res.render('dashboard', data)
+      return res.json(data)
     })
   },
   getTops: (req, res) => {
     restService.getTops(req, res, (data) => {
-      return res.render('topRestaurant', data)
+      return res.json(data)
     })
   },
 }
